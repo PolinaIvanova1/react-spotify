@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+@import url('http://fonts.googleapis.com/css?family=Lato:400,700');
+
+body {
+    font-family: "Lato", serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.artistCard {
+    margin: 1.5rem 0.5rem 0 0.5rem;
+    width: 17rem;
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+    font-family: "Lato", serif;
+    text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.cardMedia {
+    display: flex;
+    height: 18rem;
+    width: 100%;
+    background-color: lightgrey;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.artist {
+    display: flex;
+    flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.artist__name {
+    text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.artist__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.artist__media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 2rem 2rem 0;
+}
+
+.artist__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.artist__tracks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.artist__genres {
+    margin-top: 1rem;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.track-name {
+    padding-left: 1rem;
+}
+
+.artist__music {
+    display: flex;
+    justify-content: space-between;
+}
+
+.music__tracks {
+    flex-basis: 50%;
+}
+
+.music__albums {
+    flex-basis: 50%;
+}
+
+.albums__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.album-card {
+    width: 30%;
+    margin: 1rem 1rem 0 0;
+}
+
+.album-card__media {
+    display: flex;
+    height: 14rem;
+    width: 100%;
+    background-color: lightgrey;
+}
+@-webkit-keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes Appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
