@@ -3,7 +3,6 @@ type InitState = any
 const initialState: InitState = {}
 
 export const artistReducer = (state = initialState, action: any) => {
-    console.log("REDUCER ", action, state)
     switch (action.type) {
         case 'SEARCH_ARTISTS':
             // @ts-ignore

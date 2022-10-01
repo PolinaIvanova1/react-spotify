@@ -4,6 +4,13 @@ body {
     font-family: "Lato", serif;
 }
 
+.main-page {
+    margin: 6rem 4rem;
+}
+.main-page__trends {
+    margin-top: 2rem;
+}
+
 .artistCard {
     margin: 1.5rem 0.5rem 0 0.5rem;
     width: 17rem;
@@ -74,22 +81,24 @@ body {
 }
 
 .music__tracks {
-    flex-basis: 50%;
+    flex-basis: 40%;
 }
 
 .music__albums {
-    flex-basis: 50%;
+    flex-basis: 55%;
 }
 
-.albums__list {
+.albums__list, .trends__list {
     display: flex;
     flex-wrap: wrap;
 }
 
-.album-card {
+.album-card{
     width: 30%;
     margin: 1rem 1rem 0 0;
 }
+
+
 
 .album-card__media {
     display: flex;

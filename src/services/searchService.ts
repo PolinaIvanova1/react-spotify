@@ -15,16 +15,30 @@ export const searchService = {
             console.log('error')
         }
     },
-    searchAlbum: async (searchKey: string) => {
+    searchAlbums: async (searchKey: string) => {
         try {
             // @ts-ignore
             const {data} = await getRequest("https://api.spotify.com/v1/search", {
                 params: {
                     q: searchKey,
-                    type: "artist"
+                    type: "album"
                 }
             })
-            return data.artists.items
+            return data.albums.items
+        } catch (error: any) {
+            console.log('error')
+        }
+    },
+    searchTracks: async (searchKey: string) => {
+        try {
+            // @ts-ignore
+            const {data} = await getRequest("https://api.spotify.com/v1/search", {
+                params: {
+                    q: searchKey,
+                    type: "track"
+                }
+            })
+            return data.tracks.items
         } catch (error: any) {
             console.log('error')
         }

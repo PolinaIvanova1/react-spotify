@@ -1,19 +1,35 @@
 export const authService = {
     login: () => {
         const hash = window.location.hash
-        let token = window.localStorage.getItem("token")
-        if (!token && hash) {
+
+        if (hash) {
             // @ts-ignore
-            token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
+            const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
+            // @ts-ignore
+            const expiresIn = +hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1]
+            const expireDate = Date.now() + (expiresIn * 1000);
+
             window.location.hash = ""
             window.localStorage.setItem("token", token)
+            window.localStorage.setItem("expireDate", expireDate + "")
+
+            return token
         }
+
+        const token = window.localStorage.getItem("token")
+        // @ts-ignore
+        const expireDate = +window.localStorage.getItem("expireDate") || 0;
+
+        if (token && Date.now() > expireDate) {
+            authService.logout();
+            return;
+        }
+
         return token
     },
-    logout: ()=>{
+    logout: () => {
         window.localStorage.removeItem("token")
         // @ts-ignore
-        window.location="http://localhost:3000/"
+        window.location = "http://localhost:3000/"
     }
 };
-

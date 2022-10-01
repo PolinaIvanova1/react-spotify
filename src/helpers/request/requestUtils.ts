@@ -1,7 +1,8 @@
 import axios from "axios";
+import store from "../../redux/store";
 
 const getToken = () => {
-    return window.localStorage.getItem("token")
+    return store.getState().tokenReducer.token
 }
 
 export const getRequest = (url: string, config: any) => {

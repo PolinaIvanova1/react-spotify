@@ -1,59 +1,59 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import CssBaseline from "@mui/material/CssBaseline";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-
 import Box from "@mui/material/Box";
-import {ContentBoxStyled} from "../ContentBox/ContentBox.styled";
+import {albumService} from "../../services/albumService";
+import {userService} from "../../services/userService";
+import AlbumCard from "../Cards/AlbumCard";
 
 const Main = () => {
     let token = window.localStorage.getItem("token")
-    const [playingTrack, setPlayingTrack] = useState()
-    const chooseTrack=(track:any)=>{
-        setPlayingTrack(track)
+
+    /*    const [playingTrack, setPlayingTrack] = useState()
+
+        const chooseTrack = (track: any) => {
+            setPlayingTrack(track)
+        }*/
+
+    const [newReleases, setNewReleases] = useState({} as any)
+    const getNewReleases = async () => {
+        setNewReleases(await albumService.getNewReleases())
     }
+
+    useEffect(() => {
+        getNewReleases()
+    }, [])
+
+    const [user, setUser] = useState({} as any)
+    const getUser = async () => {
+        setUser(await userService.getUser())
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
     return (
         <Box sx={{display: 'flex'}}>
             <CssBaseline/>
             <Header/>
             <Sidebar/>
-            <ContentBoxStyled component="main">
-
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
+            <Box className={"main-page"}>
+                <Typography variant="h5" className={"main-page__user"}>
+                    {user?.display_name ? `Glad to see you, ${user.display_name}` : null}
                 </Typography>
-
-
-                <Toolbar/>
-
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
-            </ContentBoxStyled>
-
+                <Box className={"main-page__trends"}>
+                    <Typography variant="h4">
+                        Trending now
+                    </Typography>
+                    <Box className={"trends__list"}>
+                        {newReleases.albums?.items?.map((album: { name: any; id: string }) => <AlbumCard item={album}
+                                                                                                         key={album.id}/>)}
+                    </Box>
+                </Box>
+            </Box>
         </Box>
     );
 }

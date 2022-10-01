@@ -33,14 +33,14 @@ export default function Sidebar() {
             "isDivider": false
         },
         {
-            "name": "Search song",
-            "to": "/searchArtists",
+            "name": "Search track",
+            "to": "/searchTracks",
             "icon": <SavedSearchIcon/>,
             "isDivider": false
         },
         {
             "name": "Search album",
-            "to": "/searchArtists",
+            "to": "/searchAlbums",
             "icon": <PageviewIcon/>,
             "isDivider": true
         },
@@ -51,7 +51,7 @@ export default function Sidebar() {
             "isDivider": true
         },
         {
-            "name": "About us",
+            "name": "About Spotify",
             "to": "/aboutUs",
             "icon": <InfoIcon/>,
             "isDivider": true

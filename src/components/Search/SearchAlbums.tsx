@@ -9,14 +9,14 @@ import Sidebar from "../Sidebar/Sidebar";
 import {searchService} from "../../services/searchService";
 import {TextField} from "@mui/material";
 import {connect} from "react-redux";
-import ArtistCard from "../Cards/ArtistCard";
 import {ContentBoxStyled} from "../ContentBox/ContentBox.styled";
+import AlbumCard from "../Cards/AlbumCard";
 
-const SearchArtists = ({searchArtists, artists}: any) => {
+const SearchAlbums = ({searchAlbums, albums}: any) => {
 
     const [searchKey, setSearchKey] = useState("")
-    const getArtists = async () => {
-        searchArtists(await searchService.searchArtists(searchKey))
+    const getAlbums = async () => {
+        searchAlbums(await searchService.searchAlbums(searchKey))
     }
 
     return (<Box sx={{display: 'flex'}}>
@@ -31,16 +31,16 @@ const SearchArtists = ({searchArtists, artists}: any) => {
                         onChange={e => setSearchKey(e.target.value)}
                         fullWidth
                         id="outlined-basic"
-                        label="Search artist..."
+                        label="Search album..."
                         variant="outlined"
                         onKeyPress={(event => {
                             if (event.key === "Enter") {
-                                getArtists()
+                                getAlbums()
                             }
                         })}
                         InputProps={{
                             endAdornment: (
-                                <IconButton onClick={getArtists}>
+                                <IconButton onClick={getAlbums}>
                                     <SearchOutlined/>
                                 </IconButton>
                             ),
@@ -48,10 +48,10 @@ const SearchArtists = ({searchArtists, artists}: any) => {
                     />
                     <Box style={{
                         display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'space-between'
-                    }}>{artists?.map((artist: any) => <ArtistCard
-                        artist={artist} key={artist.id}/>)}
+                        justifyContent: 'space-between',
+                        flexDirection: 'column'
+                    }}>
+                        {albums?.map((album: any) => <AlbumCard key={album.id} item={album}/>)}
                     </Box>
                 </div>
             </ContentBoxStyled>
@@ -61,16 +61,16 @@ const SearchArtists = ({searchArtists, artists}: any) => {
 }
 
 function mapStateToProps(state: any) {
-    return {artists: state.artistReducer.artists}
+    return {albums: state.albumReducer.albums}
 }
 
 function mapDispatchToProps(dispatch: any) {
     return {
-        searchArtists: (data: any) => {
-            const action = {type: 'SEARCH_ARTISTS', payload: data}
+        searchAlbums: (data: any) => {
+            const action = {type: 'SEARCH_ALBUMS', payload: data}
             dispatch(action)
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchArtists);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchAlbums);
