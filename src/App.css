@@ -1,24 +1,59 @@
-@import url('http://fonts.googleapis.com/css?family=Lato:400,700');
+@import url('http://fonts.googleapis.com/css?family=Montserrat:400,700');
 
-body {
-    font-family: "Lato", serif;
+header {
+    height: 6rem;
+    display: flex;
+    justify-content: center;
 }
+
+.sidebar {
+    margin-top: 5.5rem;
+}
+
+.sidebar__item {
+    height: 5rem;
+}
+
+.MuiButtonBase-root.MuiListItemButton-root.MuiListItemButton-gutters.sidebar__item-active {
+    height: 5rem;
+    background-color: #22d762;
+}
+
+/*main page*/
 
 .main-page {
-    margin: 6rem 4rem;
+    margin: 4rem;
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
 }
+
 .main-page__trends {
     margin-top: 2rem;
 }
 
-.artistCard {
-    margin: 1.5rem 0.5rem 0 0.5rem;
-    width: 17rem;
+.trends__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.trends__album {
+    width: 24%;
+}
+
+/*search artists, tracks, albums*/
+
+.search {
     animation-name: Appearance;
     animation-duration: 3s;
     animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
-    font-family: "Lato", serif;
-    text-decoration: none;
+}
+
+.track-card {
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
 }
 
 .cardMedia {
@@ -28,9 +63,35 @@ body {
     background-color: lightgrey;
 }
 
+.search__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.search__artist {
+    width: 24%;
+}
+
+.artistCard {
+    margin: 1.5rem 0.5rem 0 0.5rem;
+    width: 17rem;
+    font-family: "Lato", serif;
+    text-decoration: none;
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+}
+
+/*component Artist*/
+
 .artist {
     display: flex;
     flex-direction: column;
+    margin: 1.75rem 0;
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
 }
 
 .artist__name {
@@ -59,10 +120,17 @@ body {
     justify-content: space-between;
 }
 
+.tracks-list__title, .albums__title {
+    margin: 1rem 0;
+}
+
 .artist__tracks {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
 }
 
 .artist__genres {
@@ -75,30 +143,36 @@ body {
     padding-left: 1rem;
 }
 
+
 .artist__music {
     display: flex;
     justify-content: space-between;
 }
 
-.music__tracks {
+.artist__tracks-list {
     flex-basis: 40%;
 }
 
-.music__albums {
+.artist__albums {
     flex-basis: 55%;
 }
 
-.albums__list, .trends__list {
+.albums__list, .search__album-list {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.album-card{
-    width: 30%;
-    margin: 1rem 1rem 0 0;
+.artist__album {
+    width: 31%;
 }
 
-
+.album-card {
+    margin: 1rem 1rem 0 0;
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+}
 
 .album-card__media {
     display: flex;
@@ -106,6 +180,17 @@ body {
     width: 100%;
     background-color: lightgrey;
 }
+
+.search__album {
+    width: 24%
+}
+
+.about {
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+}
+
 @-webkit-keyframes Appearance {
     0% {
         opacity: 0;

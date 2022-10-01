@@ -15,6 +15,7 @@ function App() {
             style={{minHeight: '100vh'}}>
             <Button
                 variant="contained"
+                color="secondary"
                 href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
                 Login to Spotify
             </Button>

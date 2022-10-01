@@ -20,7 +20,7 @@ const TrackCard = ({item}: any) => {
     const durationInSeconds: number = Math.floor((item.duration_ms / 1000) % 60);
     const durationTrack = durationInMinutes + ':' + (durationInSeconds > 10 ? durationInSeconds : ('0' + durationInSeconds))
 
-    return <List disablePadding>
+    return <List disablePadding className="track-card">
         <ListItem disablePadding>
             <ListItemButton>
                 <ListItemAvatar>

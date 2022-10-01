@@ -7,16 +7,9 @@ import Box from "@mui/material/Box";
 import {albumService} from "../../services/albumService";
 import {userService} from "../../services/userService";
 import AlbumCard from "../Cards/AlbumCard";
+import {ContentBoxStyled} from '../ContentBox/ContentBox.styled';
 
 const Main = () => {
-    let token = window.localStorage.getItem("token")
-
-    /*    const [playingTrack, setPlayingTrack] = useState()
-
-        const chooseTrack = (track: any) => {
-            setPlayingTrack(track)
-        }*/
-
     const [newReleases, setNewReleases] = useState({} as any)
     const getNewReleases = async () => {
         setNewReleases(await albumService.getNewReleases())
@@ -40,7 +33,7 @@ const Main = () => {
             <CssBaseline/>
             <Header/>
             <Sidebar/>
-            <Box className={"main-page"}>
+            <ContentBoxStyled className={"main-page"}>
                 <Typography variant="h5" className={"main-page__user"}>
                     {user?.display_name ? `Glad to see you, ${user.display_name}` : null}
                 </Typography>
@@ -49,11 +42,15 @@ const Main = () => {
                         Trending now
                     </Typography>
                     <Box className={"trends__list"}>
-                        {newReleases.albums?.items?.map((album: { name: any; id: string }) => <AlbumCard item={album}
-                                                                                                         key={album.id}/>)}
+                        {newReleases.albums?.items?.map((album: { name: any; id: string }) =>
+                            <Box key={album.id}
+                                 className={"trends__album"}>
+                                <AlbumCard
+                                    item={album}/>
+                            </Box>)}
                     </Box>
                 </Box>
-            </Box>
+            </ContentBoxStyled>
         </Box>
     );
 }

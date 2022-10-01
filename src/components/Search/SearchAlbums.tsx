@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import {SearchOutlined} from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
 import CssBaseline from "@mui/material/CssBaseline";
@@ -24,14 +23,13 @@ const SearchAlbums = ({searchAlbums, albums}: any) => {
             <Header/>
             <Sidebar/>
             <ContentBoxStyled component="main" sx={{flexGrow: 1, p: 3}}>
-                <Toolbar/>
-                <div>
+                <div className={"search"}>
                     <TextField
                         type="text"
                         onChange={e => setSearchKey(e.target.value)}
                         fullWidth
                         id="outlined-basic"
-                        label="Search album..."
+                        label="Search album"
                         variant="outlined"
                         onKeyPress={(event => {
                             if (event.key === "Enter") {
@@ -46,12 +44,8 @@ const SearchAlbums = ({searchAlbums, albums}: any) => {
                             ),
                         }}
                     />
-                    <Box style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        flexDirection: 'column'
-                    }}>
-                        {albums?.map((album: any) => <AlbumCard key={album.id} item={album}/>)}
+                    <Box className="search__album-list">
+                        {albums?.map((album: any) => <Box className={"search__album"}><AlbumCard key={album.id} item={album}/></Box>)}
                     </Box>
                 </div>
             </ContentBoxStyled>
