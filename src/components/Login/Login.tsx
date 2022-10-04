@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Button, Grid} from "@mui/material";
-import {AUTH_ENDPOINT, CLIENT_ID, REDIRECT_URI, RESPONSE_TYPE} from "../../services/config";
+import {AUTH_ENDPOINT, CLIENT_ID, REDIRECT_URI, RESPONSE_TYPE, SCOPES} from "../../services/config";
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
             <Button
                 variant="contained"
                 color="secondary"
-                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${encodeURIComponent(SCOPES)}&response_type=${RESPONSE_TYPE}`}>
                 Login to Spotify
             </Button>
         </Grid>

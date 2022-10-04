@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
@@ -59,7 +58,6 @@ const Artist = () => {
             <Header/>
             <Sidebar/>
             <ContentBoxStyled component="main" sx={{flexGrow: 1, p: 3}}>
-                <Toolbar/>
                 {artist.id &&
                   <Box className={"artist"}>
                     <Typography variant="h3" className={"artist__name"}>

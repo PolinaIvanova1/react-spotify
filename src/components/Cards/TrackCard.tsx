@@ -13,8 +13,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Box from "@mui/material/Box";
+import {userService} from "../../services/userService";
+import {connect} from "react-redux";
 
 const TrackCard = ({item}: any) => {
+
+    const deleteTrack = async () => {
+        await userService.deleteLikedSongs([item.id])
+    }
 
     const durationInMinutes: number = Math.floor((item.duration_ms / 1000 / 60) << 0);
     const durationInSeconds: number = Math.floor((item.duration_ms / 1000) % 60);
@@ -41,8 +47,9 @@ const TrackCard = ({item}: any) => {
                         {item.name} — {item.artists.map((item: any) => item.name).join(", ")}
                     </Typography>
                 </ListItemText>
-                <IconButton><FavoriteIcon fontSize={"medium"}/></IconButton>
                 <Box> {durationTrack} </Box>
+                <IconButton onClick={deleteTrack}><FavoriteIcon color="secondary" fontSize={"medium"}/></IconButton>
+
             </ListItemButton>
 
         </ListItem>
@@ -50,4 +57,18 @@ const TrackCard = ({item}: any) => {
 
 };
 
-export default TrackCard;
+function mapStateToProps(state: any) {
+    return {tracks: state.trackReducer.track}
+}
+
+function mapDispatchToProps(dispatch: any) {
+    return {
+        deleteTrack: (data: any) => {
+            const action = {type: 'DELETE_TRACK', payload: data}
+            console.log(action.payload)
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrackCard);

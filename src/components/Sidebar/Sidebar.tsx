@@ -13,12 +13,12 @@ import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import HomeIcon from '@mui/icons-material/Home';
 import {NavLink, useLocation} from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const drawerWidth = 260;
 
 export default function Sidebar() {
     const location = useLocation();
-
 
     const navLinks = [
         {
@@ -45,12 +45,12 @@ export default function Sidebar() {
             "icon": <PageviewIcon/>,
             "isDivider": true
         },
-        /*        {
-                    "name": "My playlist",
-                    "to": "/searchArtists",
-                    "icon": <FavoriteIcon/>,
-                    "isDivider": true
-                },*/
+        {
+            "name": "My playlist",
+            "to": "/likedSongs",
+            "icon": <FavoriteIcon/>,
+            "isDivider": true
+        },
         {
             "name": "About Spotify",
             "to": "/aboutUs",
@@ -59,8 +59,6 @@ export default function Sidebar() {
         },
     ]
 
-
-    // @ts-ignore
     return (<Drawer
             variant="permanent"
             sx={{

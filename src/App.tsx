@@ -13,6 +13,11 @@ import SearchTracks from "./components/Search/SearchTracks";
 import SearchAlbums from "./components/Search/SearchAlbums";
 import {ThemeProvider} from "@mui/material"
 import {createTheme} from '@mui/material/styles'
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import LikedSongs from "./components/LikedSongs/LikedSongs";
 
 function App(props: any) {
 
@@ -57,30 +62,33 @@ function App(props: any) {
 
     return (
         <ThemeProvider theme={props.theme ? themeLight : themeDark}>
+
             <Router>
+                {props.token &&
+                  <Box sx={{display: 'flex'}}>
+                    <CssBaseline/>
+                    <Header/>
+                    <Sidebar/>
+                  </Box>}
                 <Routes>
-                    {<Route path="/">
-                        <Route path="/" element={<Login/>}/>
-                        {props.token &&
-                          <>
-                            <Route path="/main" element={<Main/>}/>
-                            <Route path="/searchArtists" element={<SearchArtists/>}/>
-                            <Route path="/searchTracks" element={<SearchTracks/>}/>
-                            <Route path="/searchAlbums" element={<SearchAlbums/>}/>
-                            <Route path="/artist/:id" element={<Artist/>}/>
-                            <Route path="/aboutUs" element={<AboutUs/>}/>
-                          </>
-                        }
-                    </Route>}
-
+                    <Route path="/" element={<Login/>}/>
+                    {props.token &&
+                      <>
+                        <Route path="/main" element={<Main/>}/>
+                        <Route path="/searchArtists" element={<SearchArtists/>}/>
+                        <Route path="/searchTracks" element={<SearchTracks/>}/>
+                        <Route path="/searchAlbums" element={<SearchAlbums/>}/>
+                        <Route path="/artist/:id" element={<Artist/>}/>
+                        <Route path="/aboutUs" element={<AboutUs/>}/>
+                        <Route path="/likedSongs" element={<LikedSongs/>}/>
+                      </>
+                    }
                 </Routes>
-
             </Router>
         </ThemeProvider>
 
     );
 }
-
 
 function mapStateToProps(state: any) {
     return {token: state.tokenReducer.token, theme: state.themeReducer.theme}

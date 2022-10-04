@@ -7,7 +7,8 @@ export const authService = {
             const token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
             // @ts-ignore
             const expiresIn = +hash.substring(1).split("&").find(elem => elem.startsWith("expires_in")).split("=")[1]
-            const expireDate = Date.now() + (expiresIn * 1000);
+
+            const expireDate: number = Date.now() + (expiresIn * 1000);
 
             window.location.hash = ""
             window.localStorage.setItem("token", token)
@@ -16,7 +17,7 @@ export const authService = {
             return token
         }
 
-        const token = window.localStorage.getItem("token")
+        const token: string | null = window.localStorage.getItem("token")
         // @ts-ignore
         const expireDate = +window.localStorage.getItem("expireDate") || 0;
 

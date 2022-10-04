@@ -15,3 +15,7 @@ export const getToken = () => {
 export const changeTheme = () => {
     return {type: "CHANGE_THEME"}
 }
+
+export const deleteTrack = () => {
+    return {type: "DELETE_TRACK"}
+}

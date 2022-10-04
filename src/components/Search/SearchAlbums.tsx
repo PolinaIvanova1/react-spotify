@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import Box from "@mui/material/Box";
 import {SearchOutlined} from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
-import CssBaseline from "@mui/material/CssBaseline";
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/Sidebar";
 import {searchService} from "../../services/searchService";
 import {TextField} from "@mui/material";
 import {connect} from "react-redux";
@@ -18,40 +15,35 @@ const SearchAlbums = ({searchAlbums, albums}: any) => {
         searchAlbums(await searchService.searchAlbums(searchKey))
     }
 
-    return (<Box sx={{display: 'flex'}}>
-            <CssBaseline/>
-            <Header/>
-            <Sidebar/>
-            <ContentBoxStyled component="main" sx={{flexGrow: 1, p: 3}}>
-                <div className={"search"}>
-                    <TextField
-                        type="text"
-                        onChange={e => setSearchKey(e.target.value)}
-                        fullWidth
-                        id="outlined-basic"
-                        label="Search album"
-                        variant="outlined"
-                        onKeyPress={(event => {
-                            if (event.key === "Enter") {
-                                getAlbums()
-                            }
-                        })}
-                        InputProps={{
-                            endAdornment: (
-                                <IconButton onClick={getAlbums}>
-                                    <SearchOutlined/>
-                                </IconButton>
-                            ),
-                        }}
-                    />
-                    <Box className="search__album-list">
-                        {albums?.map((album: any) => <Box className={"search__album"}><AlbumCard key={album.id} item={album}/></Box>)}
-                    </Box>
-                </div>
-            </ContentBoxStyled>
-        </Box>
-
-    );
+    return (
+        <ContentBoxStyled component="main" sx={{flexGrow: 1, p: 3}}>
+            <div className={"search"}>
+                <TextField
+                    type="text"
+                    onChange={e => setSearchKey(e.target.value)}
+                    fullWidth
+                    id="outlined-basic"
+                    label="Search album"
+                    variant="outlined"
+                    onKeyPress={(event => {
+                        if (event.key === "Enter") {
+                            getAlbums()
+                        }
+                    })}
+                    InputProps={{
+                        endAdornment: (
+                            <IconButton onClick={getAlbums}>
+                                <SearchOutlined/>
+                            </IconButton>
+                        ),
+                    }}
+                />
+                <Box className="search__album-list">
+                    {albums?.map((album: any) => <Box className={"search__album"}><AlbumCard key={album.id}
+                                                                                             item={album}/></Box>)}
+                </Box>
+            </div>
+        </ContentBoxStyled>);
 }
 
 function mapStateToProps(state: any) {

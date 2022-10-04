@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../Header/Header";
-import Sidebar from "../Sidebar/Sidebar";
-import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import {albumService} from "../../services/albumService";
@@ -29,10 +26,6 @@ const Main = () => {
     }, [])
 
     return (
-        <Box sx={{display: 'flex'}}>
-            <CssBaseline/>
-            <Header/>
-            <Sidebar/>
             <ContentBoxStyled className={"main-page"}>
                 <Typography variant="h5" className={"main-page__user"}>
                     {user?.display_name ? `Glad to see you, ${user.display_name}` : null}
@@ -51,7 +44,7 @@ const Main = () => {
                     </Box>
                 </Box>
             </ContentBoxStyled>
-        </Box>
+
     );
 }
 
